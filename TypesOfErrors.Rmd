@@ -1,0 +1,23 @@
+---
+title: "TypesOfErrors"
+output: html_document
+---
+# Error Types
+## Key Quantities
+
+
+### Concepts
+* Sensitivity -> Pr(positive test | disease)
+* Specificity -> Pr(negative test | no disease)
+* Positive Predictive Value -> Pr(disease | positive test)
+* Negative Predictive Value -> Pr(no disease | negative test)
+* Accuracy -> Pr(correct outcome)
+
+### Calculations
+* Sensitivity -> TP/(TP+FN)
+* Specificity -> TN/(FP+TN)
+* Positive Predictive Value -> TP/(TP+FP)
+* Negative Predictive Value -> TN/(FN+TN)
+* Accuracy -> (TP+TN)/(TP+FP+FN+TN)
+
+<http://www.biostat.jhsph.edu/~iruczins/teaching/140.615>

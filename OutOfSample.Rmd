@@ -29,25 +29,20 @@ spamLabel<-(smallSpam$type=="spam")*1 +1
 
 ### Spam Plot
 ```{r spam plot}
-plot(smallSpam$capitalAve,col=spamLabel,ylab="Capitol Average")
+plot(smallSpam$capitalAve,col=spamLabel,ylab="Capital Letter Average")
 ```
 
-## R Markdown
-
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-```{r cars}
-summary(cars)
+### Spam Rule1 Function
+### Rule1 is an example of Overfitting
+```{r rule1}
+rule1<-function(x){
+    prediction<-rep(NA,length(x))
+    prediction[x>2.7]<-"spam"
+    prediction[x<2.40]<-"nonspam"
+    prediction[(x>=2.40 & x<=2.45)]<-"spam"
+    prediction[(x>2.45 & x<=2.70)]<-"nonspam"
+    return(prediction)
+}
+table(rule1(smallSpam$capitalAve),smallSpam$type)
+table(rule1(spam$capitalAve),spam$type)
 ```
-
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.

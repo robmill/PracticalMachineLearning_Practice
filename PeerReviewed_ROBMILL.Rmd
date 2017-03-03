@@ -1,0 +1,15 @@
+---
+title: "PracticalMachineLearning_ROBMILL"
+output: html_document
+---
+### Final Peer Reviewed Assignment
+## Practical Machine Learning
+## Week 4
+
+```{r preparation}
+# Load Librarys
+# Load Data
+library(kernlab)
+
+setwd("../PracticalMachineLearning_Robmill/")
+```

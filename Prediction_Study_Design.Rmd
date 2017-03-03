@@ -1,0 +1,43 @@
+---
+title: "Prediction_Study_Design"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Prediction Study Design
+
+1. Define your error rate
+2. Split data into:
+- Training, testing, validation
+3. On the training set pick features
+- Use cross-validation
+4. On the training set pick prediction function
+- Use cross-validation
+5. If no validation
+- Apply 1x to test set
+6. If validation
+- Apply to test set
+- Apply 1x to validation
+
+## Know the Benchmarks
+<http://www.heritagehealthprize.com/c/hhp/leaderboard>
+
+## Study design
+<http://www2.research.att.com/~volinsky/papers/ASAStatComp.pdf>
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
