@@ -6,7 +6,7 @@ output: html_document
 ## R Code Used to Load Kernlab and Data Set
 ### Data Set: Spam
 
-```{r out of sample}
+```{r out of sample setup}
 knitr::opts_chunk$set(echo = TRUE)
 library(kernlab); data(spam); set.seed(333)
 
@@ -19,6 +19,17 @@ str(spam)
 ### Spam Summary
 ```{r spam summary}
 summary(spam)
+```
+
+### Spam Variables
+```{r spam vars}
+smallSpam<-spam[sample(dim(spam)[1],size=10),]
+spamLabel<-(smallSpam$type=="spam")*1 +1
+```
+
+### Spam Plot
+```{r spam plot}
+plot(smallSpam$capitalAve,col=spamLabel,ylab="Capitol Average")
 ```
 
 ## R Markdown
