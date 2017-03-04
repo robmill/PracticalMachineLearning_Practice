@@ -1,0 +1,35 @@
+---
+title: "Covariate_Creation"
+output: html_document
+---
+
+```{r }
+library(kernlab)
+data(spam)
+spam$capitalAveSq<-spam$capitalAve^2
+```
+
+1. Lvl1: From raw data to covariate
+2. Lvl2: Transforming tidy covariates
+
+* Depends heavily on the application.
+* The balancing act is summarization vs. information loss.
+
+```{r}
+library(ISLR)
+library(caret)
+data(Wage)
+inTrain<-createDataPartition(y=Wage$wage,p=0.7,list=FALSE)
+training<-Wage[inTrain,]
+testing<-Wage[-inTrain,]
+
+
+```
+
+### Common covariates to add
+```{r}
+table(training$jobclass)
+
+dummies<-dummyVars(wage~jobclass,data=training)
+head(predict(dummies,newdata=training))
+```
