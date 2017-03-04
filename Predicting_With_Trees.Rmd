@@ -1,0 +1,42 @@
+---
+title: "Predicting_With_Trees"
+output: html_document
+---
+
+```{r setup}
+library(caret)
+data(iris)
+library(ggplot2)
+library(rattle)
+
+table(iris$Species)
+
+```
+
+```{r}
+inTrain<-createDataPartition(y=iris$Species,
+                             p=0.7,list=FALSE)
+training<-iris[inTrain,]
+testing<-iris[-inTrain,]
+dim(training)
+dim(testing)
+```
+
+```{r}
+qplot(Petal.Width,Sepal.Width,colour=Species,data=training)
+```
+
+```{r}
+modFit<-train(Species~.,method="rpart",data=training)
+
+print(modFit$finalModel)
+
+plot(modFit$finalModel,uniform=TRUE,
+     main="Classification Tree")
+text(modFit$finalModel,use.n=TRUE,all=TRUE,cex=.8)
+
+
+```
+
+```{r}
+```
