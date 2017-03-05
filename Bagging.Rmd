@@ -1,0 +1,48 @@
+---
+title: "Bagging - Bootstrap Aggregating"
+output: html_document
+---
+# Bagging
+1. Resample cases and recalculate predictions.
+2. Average or majority vote.
+
+### Notes:
+* Similar bias
+* Reduced variance
+* More useful for non-linear functions
+```{r}
+library(ElemStatLearn)
+library(ggplot2)
+library(caret)
+data(ozone,package = "ElemStatLearn")
+str(ozone)
+head(ozone)
+summary(ozone)
+
+inTrain<-createDataPartition(y=ozone$temperature,p=0.7,list=FALSE)
+training<-ozone[inTrain,]
+testing<-ozone[-inTrain,]
+```
+
+```{r}
+
+qplot(x = radiation,y = temperature,colour=ozone,data=ozone)
+
+```
+
+## Bagging Practice using caret
+1. Some models perform bagging for you, in train function consider method options:
+* bagEarth
+* treebag
+* bagFDA
+2. Alternatively you can bag any model you choose using the bag function
+```{r}
+dim(training)
+head(training)
+set.seed(32323)
+modelFit1<-train(temperature~ozone,data=training,method="bagEarth")
+modelFit1
+
+#modelFit2<-train(ozone~.,data=training,method="treebag")
+#modelFit2
+```

@@ -26,8 +26,9 @@ dim(testing)
 qplot(Petal.Width,Sepal.Width,colour=Species,data=training)
 ```
 
-```{r}
+```{r model fitting}
 modFit<-train(Species~.,method="rpart",data=training)
+
 
 print(modFit$finalModel)
 

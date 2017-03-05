@@ -1,0 +1,53 @@
+---
+title: "Boosting"
+output: html_document
+---
+
+### Basic idea
+1. Take lots of (possibly) weak predictors.
+2. Weight them and add them up.
+3. Get a stronger predictor.
+
+```{r setup}
+
+```
+### Boosting in R
+* Boosting can be used with any subset of classifiers.
+* One large subclass is gradient boosting.
+* R has multiple boosting libraries.
+- gbm: boosting with trees.
+- mboost: model based boosting.
+- ada: statistical boosting based on additive logistic regression.
+- gamBoost: for boosting generalized additive models.
+* Most of these are available in the caret package.
+
+```{r wage example setup}
+library(ISLR)
+data(Wage)
+library(ggplot2)
+library(caret)
+```
+
+```{r wage example data partitioning}
+Wage<-subset(Wage,select=-c(logwage))
+
+inTrain<-createDataPartition(y=Wage$wage,p=0.7,
+                             list=FALSE)
+training<-Wage[inTrain,]
+testing<-Wage[-inTrain,]
+```
+
+```{r wage example model fitting, include=FALSE}
+
+modFit<-train(wage~.,method="gbm",
+              data=training,
+              verbose=FALSE)
+```
+
+```{r wage exmaple print modFit}
+print(modFit)
+```
+
+```{r wage example Plotting the results}
+qplot(predict(modFit,testing),wage,data=testing)
+```
